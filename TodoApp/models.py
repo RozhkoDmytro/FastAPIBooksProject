@@ -9,4 +9,4 @@ class Todo(BaseModel):
     complete = Column(Boolean, default=False)
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)
-    prioryty = Column(Integer, nullable=False)
+    priority = Column(Integer, nullable=False)
