@@ -6,3 +6,4 @@ alembic
 httpx
 pytest
 pytest-asyncio
+passlib

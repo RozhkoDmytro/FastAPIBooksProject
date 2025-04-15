@@ -1,9 +1,13 @@
 # Environment file
 ENV_FILE = .env
 
+# Generate a random secret key
+random_key:
+	openssl rand -hex 32
+
 # Run the FastAPI server
 run:
-	uvicorn main:app --reload 
+	uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-exclude "env/*"
 
 # Install dependencies
 install:
