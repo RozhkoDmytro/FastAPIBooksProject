@@ -15,7 +15,7 @@ SECRET_KEY = "c975a719772415d3aca02fd77629ec71bf632f81fd90b107e913fa828b430603"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 router = APIRouter(
     prefix="/auth",
@@ -98,7 +98,7 @@ async def create_user(db: db_dependency, user: CreateUserRequest):
         first_name=user.first_name,
         last_name=user.last_name,
         role=user.role,
-        hashed_password=bcrypt_context.hash(user.password),
+        hashed_password=bcrypt_context.hash(user.password.get_secret_value()),
         is_active=True,
     )
     db.add(user_model)
